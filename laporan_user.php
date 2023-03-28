@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -14,11 +17,8 @@ if ($data['jumlah'] > 0) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>USER</title>
   <!-- bootstrap 5 css -->
-  <link rel=”stylesheet” href=”css/bootstrap.min.css” />
-  <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css" type="text/css">
-  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="http://192.168.29.55:8300/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous" />
+  <link rel="stylesheet" href="http://192.168.29.55:8300/bootstrap-icons.css" />
   <style>
     li {
       list-style: none;
@@ -62,29 +62,33 @@ if ($data['jumlah'] > 0) {
       <h4 class="mb-5 text-white">CAR REQUEST</h4>
       <li>
         <a class="text-white" href="halaman_user.php">
+          <i class="bi bi-house mr-2"></i>
           Dashboard
         </a>
       </li>
       <li>
         <a class="text-white" href="data_user.php">
+          <i class='bi bi-truck'></i>
           Input Request Car
         </a>
       </li>
       <li>
         <a class="text-white" href="laporan_user.php">
+          <i class="bi bi-clipboard-data-fill"></i>
           Laporan Car Request
           <?php include('notification.php') ?>
         </a>
       </li>
       <a class="text-white" href="index.php">
-       Logout
+       <i class='bi bi-box-arrow-right'></i>
+        Logout
       </a>
       </li>
   </div>
   </div>
   <section class="p-4" id="main-content">
     <button class="btn btn-primary" id="button-toggle">
-      <img src="list.png" height="30px" width="30px">
+      <i class="bi bi-list"></i>
     </button>
     <div style="border:1px solid rgb(238,238,238); padding:10px; overflow:auto; width:auto; height:auto;">
       <h4>Laporan Car Request</h4>

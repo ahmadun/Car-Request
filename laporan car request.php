@@ -1,7 +1,7 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
+$host = "dbcar";
+$user = "sumitomo";
+$pass = "sumitomo";
 $database = "car_request";
 $mysqli = new mysqli($host, $user, $pass, $database);
 if ($mysqli->connect_errno) {

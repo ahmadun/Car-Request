@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include('koneksi.php');
 if ($_SESSION['hak_akses'] == 'supervisor') {
     $login = mysqli_query($koneksi, "select count(id) as jumlah from data where notif_supervisor=0");

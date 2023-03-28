@@ -1,5 +1,5 @@
 <?php  
-$connect = mysqli_connect("localhost", "root", "", "car_request");
+$connect = mysqli_connect("dbcar", "sumitomo", "sumitomo", "car_request");
 $data = count($_POST["nama"]);  
  if($data > 0)  
  {  
