@@ -1,15 +1,16 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>user</title>
+  <title>USER</title>
   <!-- bootstrap 5 css -->
-  <link rel="stylesheet" href="http://192.168.29.55:8300/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous" />
-  <link rel="stylesheet" href="http://192.168.29.55:8300/bootstrap-icons.css" />
+
+   <link rel=”stylesheet” href=”css/bootstrap.min.css” />
+  <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css" type="text/css">
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
   <style>
     li {
       list-style: none;
@@ -48,26 +49,22 @@ session_start();
       <h4 class="mb-5 text-white">CAR REQUEST</h4>
       <li>
         <a class="text-white" href="halaman_user.php">
-          <i class="bi bi-house mr-2"></i>
           Dashboard
         </a>
       </li>
       <li>
         <a class="text-white" href="data_user.php">
-          <i class='bi bi-truck'></i>
           Input Request Car
         </a>
       </li>
       <li>
         <a class="text-white" href="laporan_user.php">
-          <i class="bi bi-clipboard-data-fill"></i>
           Laporan Car Request
           <?php include('notification.php'); ?>
         </a>
       </li>
       <li>
         <a class="text-white" href="index.php">
-          <i class='bi bi-box-arrow-right'></i>
           Logout
         </a>
       </li>
@@ -77,7 +74,7 @@ session_start();
   </div>
   <section class="p-4" id="main-content">
     <button class="btn btn-primary" id="button-toggle">
-      <i class="bi bi-list"></i>
+      <img src="list.png" height="30px" width="30px">
     </button>
     <div class="card mt-5">
       <div class="body">
@@ -85,9 +82,9 @@ session_start();
           <html>
           <head>
             <title>Request</title>
-            <link rel="stylesheet" href="http://192.168.29.55:8300/bootstraps.min.css" />
-            <script src="http://192.168.29.55:8300/bootstrap.min.js"></script>
-            <script src="http://192.168.29.55:8300/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
           </head>
 
           <body>
