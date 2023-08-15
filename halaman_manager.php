@@ -15,10 +15,12 @@
     li {
       list-style: none;
       margin: 20px 0 20px 0;
+
     }
+
     a {
       text-decoration: none;
-    
+
     }
 
     .sidebar {
@@ -43,9 +45,8 @@
 
     #main-content {
       transition: 0.4s;
-
     }
-</style>
+  </style>
 </head>
 
 <body>
@@ -53,7 +54,7 @@
     <div class="sidebar p-4" id="sidebar">
       <h4 class="mb-5 text-black" style="font-size: 25px;">CAR REQUEST</h4>
       <li>
-        <a class="text-white" href="#">
+        <a class="text-white" href="halaman_manager.php">
           Dashboard
         </a>
       </li>
@@ -71,68 +72,89 @@
       <li>
         <a class="text-white" href="laporan_manager.php">
           Laporan Car Request
-          
-        </a>
+         </li>
+      <a class="text-white" href="index.php">
+       Logout
+      </a>
       </li>
-      <li>
-        <a class="text-white" href="index.php">
-          Logout
-        </a>
-      </li>
-  </div>
+ </div>
   </div>
   <section class="p-4" id="main-content">
     <button class="btn btn-info" id="button-toggle">
       <img src="list.png" height="30px" width="30px">
     </button>
-    <div class="card mt-5">
-      <div class="card-body">
-        <h4>JADWAL KEBERANGKATAN BUS PLAN</h4>
-        <p>
-          <?php
-          include "koneksi.php";
-          $query = mysqli_query($koneksi, "SELECT * FROM jadwal");
-          ?>
-        <form action="" method="post">
-          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr bgcolor="white">
-            <tr>
-              <th width="30">PLAN 1</td>
-              <th width="30">PLAN 3</td>
-            </tr>
-            <?php if (mysqli_num_rows($query) > 0) { ?>
-              <?php
-              $no = 1;
-              while ($data = mysqli_fetch_array($query)) {
-              ?>
-                <tr>
-                  <td><?php echo $data["plan1"]; ?></td>
-                  <td><?php echo $data["plan3"]; ?></td>
-                </tr>
-              <?php $no++;
-              } ?>
-            <?php } ?>
-          </table>
-          </br>
-          <h6>Ketentuan jam keberangkatan adalah :</h6></br>
-          Penumpang harus sudah stand by di halte 5 menit sebelum jadwal keberangkatan</br>
-          Penumpang yang diterima hanya yang telah memasuki list dan telah diterima oleh seluruh pihak</br>
+    <div style="border:1px solid rgb(238,238,238); padding:10px; overflow:auto; width:auto; height:auto;">
+     <div style="border:1px solid rgb(238,238,238); padding:10px; overflow:auto; width:auto; height:auto;">
+     <body>
+  <h2>Laporan Data Pegawai</h2>
+  <form method="GET" action="laporan_ga.php" style="text-align: right;">
+    Cari jam keberangkatan:</br><input type="text" name="kata_cari" value="<?php if(isset($_GET['kata_cari'])) { echo $_GET['kata_cari']; } ?>"  />
+        <button type="submit"><i class="bi bi-search" style="margin-right: 7px;"></i></button>
+    </form></br> 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>NIK</th>
+        <th>Nama</th>
+        <th>Section</th>
+        <th>Posisi</th>
+        <th>Tujuan</th>
+        <th>Alasan</th>
+        <th>Keberangkatan</th>
+        <th>Manager</th>
+        <th>Status GA</th>
+        <th>Hasil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+            include('koneksi.php');
+            if (isset($_GET['kata_cari'])) {
+              $kata_cari = $_GET['kata_cari'];
+              $query = "SELECT * FROM data WHERE keberangkatan like '%" . $kata_cari . "%'  ORDER BY id_data ASC";
+            } else {
+              $query = "SELECT * FROM data ORDER BY id_data ASC";
+            }
+      
+      // Buat koneksi ke database (gunakan koneksi yang sesuai dengan database Anda)
+      $koneksi = mysqli_connect("dbcar", "sumitomo", "sumitomo", "request_car");
 
-        </form>
+      // Ambil semua data dari tabel data
+      $query = mysqli_query($koneksi, $query);
 
-        </p>
-    </div>
-    </div>
-  </section>
-  </p>
-  </div>
-  </div>
-  </section>
+      // Tampilkan data dalam tabel
+      while ($data = mysqli_fetch_array($query)) {
+        echo "<tr>";
+        echo "<td>" . $data['nik'] . "</td>";
+        echo "<td>" . $data['nama'] . "</td>";
+        echo "<td>" . $data['section'] . "</td>";
+        echo "<td>" . $data['posisi'] . "</td>";
+        echo "<td>" . $data['tujuan'] . "</td>";
+        echo "<td>" . $data['alasan'] . "</td>";
+        echo "<td>" . $data['keberangkatan'] . "</td>";
+        
+        // Tambahkan baris berikut untuk menampilkan kolom Manager dan Status GA
+        echo "<td>";
+        if ($data["posisi"] == "manager") {
+            echo "----";
+        }
+        echo "</td>";
+        echo "<td>" . $data['status_ga'] . "</td>";
+
+        echo "</tr>";
+      }
+
+      // Tutup koneksi ke database
+      mysqli_close($koneksi);
+      ?>
+    </tbody>
+  </table>
+
   <script>
     document.getElementById("button-toggle").addEventListener("click", () => {
     document.getElementById("sidebar").classList.toggle("active-sidebar");
     document.getElementById("main-content").classList.toggle("active-main-content");
     });
-  </script>
+</script>
 </body>
 </html>
