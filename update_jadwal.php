@@ -1,23 +1,16 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
     <html lang="en">
       <head >
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Admin</title>
+        <title>USER</title>
         <!-- bootstrap 5 css -->
-        <link
-          rel="stylesheet"
-          href="http://192.168.29.55:8300/bootstrap.min.css"
-          integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK"
-          crossorigin="anonymous"
-        />
-        <link
-          rel="stylesheet"
-          href="http://192.168.29.55:8300/bootstrap-icons.css"
-        />
+       <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <style>
     li {
         list-style: none;
@@ -27,7 +20,7 @@ session_start();
 
     a {
         text-decoration: none;
-        background: #87CEFA;
+      
     }
 
     .sidebar {
@@ -37,6 +30,7 @@ session_start();
         margin-left: -300px;
         transition: 0.4s;
         background: #87CEFA;
+        font-size: 15px;
     }
 
     .active-main-content {
@@ -55,50 +49,38 @@ session_start();
     }
 </style>
       </head>
-      <body background="#87CEFA";>
+      <body>
         <div>
-          <div class="sidebar p-4 background #87CEFA" id="sidebar" >
-            <h4 class="mb-5 text-white">CAR REQUEST</h4>
-            <li>
-              <a class="text-white" href="halaman_admin.php">
-                <i class="bi bi-house mr-2"></i>
-                Dashboard
-              </a>
-            </li>
-            <li>
-              <a class="text-white" href="data_admin.php">
-                <i class='bi bi-truck'></i>
-               Input Request Car
-              </a>
-            </li>
-            <li>
-              <a class="text-white" href="laporan_admin.php">
-                <i class="bi bi-clipboard-data-fill"></i>
-                Laporan Car Request
-                <?php include('notification.php') ?>
-              </a>
-            </li>
-            <li>
-              <a class="text-white" href="add.php">
-                <i class='bi bi-person-plus'></i>
-                Add USER
-              </a>
-            </li>
+          <div class="sidebar p-4" id="sidebar" >
+            <h4 class="mb-5 text-black" style="font-size: 25px;">CAR REQUEST</h4>
              <li>
-              <a class="text-white" href="update_jadwal.php">
-                <i class='bi bi-person-plus'></i>
-                Update Jadwal Car
-              </a>
-            </li>
-            <li>
-              <a class="text-white" href="index.php">
-                <i class='bi bi-box-arrow-right'></i>
-                Logout
-              </a>
-            </li>
+        <a class="text-white" href="halaman_GA.php">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a class="text-white" href="request_ga.php">
+          Data Car Request
+          <?php include('notifikasi.php') ?>
+        </a>
+      </li>
+      <li>
+        <a class="text-white" href="laporan_ga.php">
+          Laporan Car Request
+        </a>
+      </li>
+      <li>
+        <a class="text-white" href="update_jadwal.php">
+          Update Jadwal Car
+        </a>
+      </li>
+      <a class="text-white" href="index.php">
+        Logout
+      </a>
+      </li>
         </div>
         </div>
-        <section class="p-4" id="main-content">
+         <section class="p-4" id="main-content">
           <button class="btn btn-primary" id="button-toggle">
             <i class="bi bi-list"></i>
           </button>
@@ -107,18 +89,20 @@ session_start();
               <h4>JADWAL KEBERANGKATAN BUS PLAN</h4>
               <p>
             
-<?php
+               <?php
 session_start();
-include"koneksi.php"; 
+include"koneksi.php"; // masukan konekasi DB
+// ambil variable
 $plan1=htmlspecialchars($_POST['plan1']);
 $plan3=htmlspecialchars($_POST['plan3']);
 $id = @$_GET['id'];
+//Proses query simpan
 $update=mysqli_query($koneksi,"update jadwal set plan1='$plan1', plan3='$plan3' where id='$id'");
 if($update){
     $_SESSION['pesan'] = '<font></font>';
-	header("location:tampil_jadwal.php");
+  header("location:tampil_jadwal.php");
 }else{
-	echo "Gagal update data!";
+  echo "Gagal update data!";
 }
 ?>
 
@@ -128,16 +112,23 @@ if($update){
 Penumpang yang diterima hanya yang telah memasuki list sistem</br>
 
 </form>
-</p>
-</div>
-</div>
-</section>
-<script>
+
+              </p>
+            </div>
+          </div>
+        </section>
+        <script>
+
+    // event will be executed when the toggle-button is clicked
     document.getElementById("button-toggle").addEventListener("click", () => {
-    document.getElementById("sidebar").classList.toggle("active-sidebar");
-    document.getElementById("main-content").classList.toggle("active-main-content");
+
+        // when the button-toggle is clicked, it will add/remove the active-sidebar class
+        document.getElementById("sidebar").classList.toggle("active-sidebar");
+
+        // when the button-toggle is clicked, it will add/remove the active-main-content class
+        document.getElementById("main-content").classList.toggle("active-main-content");
     });
 </script>
-</body>
-</html>
+      </body>
+    </html>
     
