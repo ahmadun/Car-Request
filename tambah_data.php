@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>tambah</title>
+	<title>TAMBAH</title>
 </head>
 <body>
  	<h2>Tambah</h2>
 	<br/>
-	<a href="halaman_admin.php">KEMBALI</a>
+	<a href="halaman_GA.php">KEMBALI</a>
 	<br/>
 	<br/>
 	<h3>Tambah Jam Keberangkatan</h3>
