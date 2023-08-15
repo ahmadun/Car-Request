@@ -22,6 +22,7 @@
 			<input type="submit" class="tombol_login" value="LOGIN">
 			<br/>
 			<br/>
+			 <a href="pw.php">Lupa password?</a>
 		</form>
 	</div>
   <script src="show.js"></script>
